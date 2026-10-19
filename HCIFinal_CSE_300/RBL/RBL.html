@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            My Rainbow
+        </title>
+        <style>
+            .line-container{
+                display: flex;
+                align-items: center;
+                margin-top: 100px;
+            }
+            .rainbow-line{
+                width: 100%;
+                height: 10px;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(
+                    to right, red, yellow,
+                    blue, purple, green,
+                    teal, pink
+                );
+                background-size: 200% 100%;
+                animation: rainbowSlide 6s linear infinite;
+            }
+            @keyframes rainbowSlide{
+                    0%{background-position: 0% 0;}
+                    100% {background-position: 200% 0;}
+            }
+
+            button{
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+            }
+
+            .button-container {
+                position: fixed;
+                top: 30%;
+                right: 20px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .controls{
+                margin-top: 30px;
+            }
+            input[type="range"]{
+                width: 300px;
+                position: fixed;
+                bottom: 60px;
+                left: 39.5%;
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="line-container">
+
+            
+
+            <div class="rainbow-line" id="rainbow-line2">
+            </div>
+            
+            <div class="button-container">
+                <button onclick="changeColors()">
+                    Change Colors
+                </button>
+
+                <button onclick="resetColors()">
+                    Reset Colors
+                </button>
+
+                <button onclick="changeBackground()">
+                    Change Background Color
+                </button>
+            </div>
+
+
+            <div class="controls">
+                <div style="position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%); text-align: center;">
+                    <label for="widthSlider">
+                        Line Width: 
+                        <span id="widthValue">
+                            100%
+                        </span>
+                    </label>
+                </div>
+                <input type="range" id="widthSlider" min="0" max="100" value="100">
+            </div>
+
+        </div>
+        
+        <script>
+            function changeColors() {
+                const rainbow = document.getElementById("rainbow-line2");
+                rainbow.style.backgroundImage=
+                "linear-gradient(to right, orange, limegreen, skyblue, violet)";
+            }
+            const slider=document.getElementById("widthSlider");
+            const rainbowLine=document.getElementById("rainbow-line2");
+            const widthValue=document.getElementById("widthValue");
+
+            slider.addEventListener('input', function () {
+                const value = slider.value + "%";
+                rainbowLine.style.width = value;
+                widthValue.textContent = value;
+            });
+
+            function resetColors() {
+                const rainbow = document.getElementById("rainbow-line2");
+                rainbow.classList.add("rainbow-line");
+                rainbow.style.backgroundImage = ""; 
+            }
+
+            function changeBackground() {
+                const colors = [ "red", "orange", "yellow", "green", "blue","violet", "indigo"];
+                document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            }
+        </script>
+    </body>
+</html>

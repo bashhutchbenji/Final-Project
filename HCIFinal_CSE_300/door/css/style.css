@@ -1,0 +1,83 @@
+html,
+body {
+	display: grid;
+	height: 100%;
+	place-items: center;
+	background-color: #ecf0f1;
+}
+
+.wrapper {
+	width: 450px;
+	height: 500px;
+	background-color: #fff;
+	position: relative;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+	border: 12px solid #097969;
+	transform-style: preserve-3d;
+	transform: perspective(2500px);
+}
+
+.wrapper img {
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+}
+
+.door {
+	position: absolute;
+	background-color: #097969;
+	width: 50%;
+	height: 100%;
+	border: 1px solid #000;
+	transition: all 1s;
+}
+
+.door1 {
+	left: 0;
+	top: 0;
+	transform-origin: left;
+}
+
+.wrapper:hover .door1 {
+	transform: rotateY(-150deg);
+}
+
+.door2 {
+	right: 0;
+	top: 0;
+	transform-origin: right;
+}
+
+.wrapper:hover .door2 {
+	transform: rotateY(150deg);
+}
+
+.handle {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background-color: silver;
+	border-radius: 50%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.door1 .handle {
+	right: 15px;
+}
+
+.door2 .handle {
+	left: 15px;
+}
+
+.button {
+	background-color: #097969;
+	border: none;
+	color: white;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
